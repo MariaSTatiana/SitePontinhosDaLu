@@ -1,0 +1,27 @@
+﻿@model List<PontinhosDaLu.Models.Produto>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div class="slider">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <input type="radio" name="slider" id="item-@(i + 1)" @(i == 0 ? "checked" : "") />
+    }
+
+    <div class="cards">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var produto = Model[i];
+            <div class="card" id="song-@(i + 1)">
+                <label for="item-@((i + 1) % Model.Count + 1)">
+                    <img src="@produto.Imagem" alt="@produto.Nome" />
+                </label>
+                <h3>@produto.Nome</h3>
+                <p>R$ @produto.Preco.ToString("F2")</p>
+                <button>Comprar Agora</button>
+            </div>
+        }
+    </div>
+</div>
